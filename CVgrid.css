@@ -1,0 +1,41 @@
+container{
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+    "Gal Biton- BI Developer"
+    "Personal Information"
+    "Technical Skills"
+    "Languages";
+    }
+   
+   .item1{
+   grid-area: Gal Biton- BI Developer;
+   padding: 3em;
+   background: rgb(128, 128, 128);
+   }
+   @media only screen and (max-width: 500px){
+       .item1{
+       grid-area: Gal Biton- BI Developer;
+       padding: 3em;
+       background: rgb(32, 32, 190);
+       }
+   }
+   
+   .item2{
+   grid-area: Personal Information;
+   padding: 3em;
+   background: rgb(107, 113, 202);
+   }
+   
+   .item3{
+   grid-area: Languages;
+   padding: 3em;
+   background: rgb(192, 192, 192);
+   }
+   
+   .item4{
+   grid-area: Technical Skills ;
+   padding: 3em;
+   background: rgb(201, 24, 24);
+   }
+   

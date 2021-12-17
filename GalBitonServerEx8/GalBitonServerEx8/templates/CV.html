@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>CV - Gal Biton</title>
+    <script src="CV.js"> </script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/CSS/CV.css') }}">
+    <script src="{{ url_for('static', filename='../static/JS/CV.js') }}"></script>
+
+</head>
+<body>
+    {% include 'Header.html' %}
+    <button onclick="printMyName()">What is my name?</button>
+    <div class="container">
+        <div class="item1">Gal Biton - BI Developer
+        </div>
+        <div class="item2">Personal Information </br>
+            Email: bitongal92@gmail.com </br>
+            Phone: 052-4654986
+        </div>
+        <div class="item3">Technical Skills </br>
+                Power BI, SQL, JAVA, VBA, R
+        </div>
+        <div class="item4">Languages </br>
+            Hebrew: Mother - tounge </br>
+            English: Fluent
+        </div>
+        <div class="item5"><h2>Contact Form</h2>
+            <form >
+                <label for="name"> Name (2 to 8 characters):</label>
+                <input type="text" id="name" name="name" required minlength="2" maxlength="8" size="10"> <br>
+                <p id="demo"></p>
+
+                <label for="lname">Last Name (2 to 8 characters):</label>
+                <input type="text" id="lname" name="name" required minlength="2" maxlength="8" size="10"><br>
+                <p id="demo2"></p>
+
+                <label for="subject">Subject</label><br>
+                <textarea id="subject" name="subject" required minlength="20"  style="height:100px"></textarea><br>
+                <button onclick="myFunction()">OK</button>
+                <p id="demo3"></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

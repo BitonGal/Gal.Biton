@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Forms</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/CSS/design.css') }}">
+</head>
+<body>
+    {% include 'Header.html' %}
+    <H1> Signing Up</H1>
+    <p>please fill up the following details</p>
+    <form class = "center">
+        <label for="firstname">First Name:</label><br>
+        <input type="text" id="firstname" name="firstname" ><br>
+        <label for="lname">Last Name:</label><br>
+        <input type="text" id="lastname" name="lastname" ><br>
+        <label for="email">Email: </label><br>
+        <input type="email" name="email" id="email" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Submit">
+    </form >
+    <h1>Contact Us</h1>
+    <form class = "center">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" ><br>
+        <label for="adress"> Address:</label><br>
+        <input type="text" id="adress" name="adress" ><br>
+        <label for="comments"> Comments:</label><br>
+        <input type="text" id="commentד" name="commentד" ><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+

@@ -40,15 +40,15 @@ def assignment9():
         if 'user_name' in request.args:
             user_name = request.args['user_name']
             if user_name is '':
-                return render_template('assignment9.html', search=True, users=users, finduser=True)
+                return render_template('assignment9.html', search=True, users=users, haveUser=True)
             user_dic = {}
             for user in users.values():
                 if user['UserName'] == user_name:
                     user_dic[1] = user
             if len(user_dic) != 0:
-                return render_template('assignment9.html', search=True, finduser=True, users=user_dic)
+                return render_template('assignment9.html', search=True, haveUser=True, users=user_dic)
             else:
-                return render_template('assignment9.html', finduser=False, search=True)
+                return render_template('assignment9.html', haveUser=False, search=True)
         return render_template('assignment9.html')
     elif current_method == 'POST':
         session['login'] = True

@@ -14,9 +14,9 @@
     <input type="submit" value="search">
 </form>
 {% if search==True %}
-    {% if finduser==false %}
+    {% if haveUser==false %}
         <h2> there is no such user</h2>
-    {% elif finduser==true %}
+    {% elif haveUser==true %}
             <span>
                 {% for t in users.values() %}
                     {% for x in t %}
@@ -29,7 +29,7 @@
 
 
 {%if session['login'] == True%}
-
+    you are already loged in
 {% else %}
     <hr>
     <h1>Register:</h1>

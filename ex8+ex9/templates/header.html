@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/header.css') }}">
+</head>
+
+<body>
+    <header id="head">
+        <a href="/">CV</a> | <a href="/ex2">exercise2</a> | <a href="forms">forms</a> | <a href='/assignment8'>assignment8</a> | <a href='/assignment9'>assignment9</a>
+        <div>
+           {% include 'login.html' %}
+        </div>
+    </header>
+
+</body>
+</html>
+
+
+

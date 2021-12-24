@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>assignment8</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/assignment8.css') }}">
+</head>
+<body>
+{% include 'Header.html' %}
+
+
+{% extends "base.html"%}
+          {%  block mysite %}
+              {{ super() }}
+            <p id="p">Things to do in NYC</p>
+            {%for i in nyc %}
+                {% if i == "soho" %}
+                    <li >{{i | upper() }}</li>
+                {% else %}
+                    <li >{{i}}</li>
+                {% endif %}
+            {%endfor%}
+
+             {% if nyc | length() < 5 %}
+                <p id="p">Not enough things to do!</p>
+             {% else %}
+                <p id="p">great things</p>
+             {% endif %}
+
+          {% endblock %}
+
+</body>
+</html>
+
+
+

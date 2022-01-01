@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/CV.css') }}">
+    <meta charset="UTF-8">
+    <title>Users Manage</title>
+</head>
+<body>
+<h3 style="color: crimson"></b>{{message}}</h3>
+
+    {% include "header.html" %}
+<hr>
+<h1> Interact with DB</h1>
+
+<b>Delete:</b>
+<form name="delete"  method="POST"   action="/delete">
+    <label for="email">email:</label><br>
+    <input name="email" type="email" ><br>
+    <input type="submit" value="delete :)">
+</form>
+<hr>
+
+<b>Insert:</b>
+<form name="insert" method="POST" action="/insert">
+    <label for="UserName">User Name:</label><br>
+    <input name="UserName" type="text" ><br>
+    <label for="fname">First Name:</label><br>
+    <input name="fname" type="text" ><br>
+    <label for="lname">Last Name:</label><br>
+    <input name="lname" type="text" ><br>
+    <label for="email">email:</label><br>
+    <input name="email" type="email" ><br>
+    <input type="submit" value="insert :)">
+</form>
+<hr>
+
+<b>Update:</b>
+<form name="update" method="POST" action="/update">
+    <label for="UserName">User Name:</label><br>
+    <input name="UserName" type="text" ><br>
+    <label for="fname">First Name:</label><br>
+    <input name="fname" type="text" ><br>
+    <label for="lname">Last Name:</label><br>
+    <input name="lname" type="text" ><br>
+    <label for="email">email:</label><br>
+    <input name="email" type="email" ><br>
+    <input type="submit" value="update :)">
+</form>
+<hr>
+
+
+<b>every body:</b><br>
+{% for user in users %}
+        user Name: {{ user.UserName }}
+        first name: {{ user.fname }}
+        last name: {{ user.lname }}
+        email: {{ user.email }} <br>
+{% endfor %}
+
+</body>
+</html>

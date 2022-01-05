@@ -1,0 +1,19 @@
+{% include 'Header.html' %}
+
+{% block title %}
+Req Backend
+{% endblock %}
+
+{% block tohen %}
+    <h1>Req Backend</h1>
+    <form action="/req_backend" method="GET">
+        <input type="number" name="number">
+        <input type="submit" value="Get Data">
+    </form>
+    {% if user %}
+        <h3> User is {{user.first_name}} {{user.last_name}}</h3>
+        <h3>User Photo</h3>
+        <img src="{{ user.avatar }}" alt="pic">
+        <h3>User Email: {{user.email}}</h3>
+    {% endif %}
+{% endblock %}

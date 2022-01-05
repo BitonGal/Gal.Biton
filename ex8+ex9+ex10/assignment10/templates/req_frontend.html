@@ -1,0 +1,17 @@
+{% include 'Header.html' %}
+
+{% block title %}
+Req Frontend
+{% endblock %}
+
+{% block tohen %}
+    <h1>Req Frontend</h1>
+    <form action="/req_backend" method="GET" name="get-user">
+        <input type="number" name="number">
+    </form>
+    <h2>Users list <button onclick="getUsers()">Get Users</button></h2>
+    <main>
+
+    </main>
+    <script src="../static/js/fetch_example.js" ></script>
+{% endblock %}

@@ -1,15 +1,14 @@
-from flask import Flask, render_template, session, request, redirect, Blueprint
 import mysql
 import mysql.connector
-
-
+import requests
+from flask import Flask, render_template, session, request, redirect, Blueprint, Response
+import json
 
 app = Flask(__name__)
 app.secret_key = '111'
 
-
 assignment10 = Blueprint('assignment10',
-                         __name__,static_folder='static',
+                         __name__, static_folder='static',
                          static_url_path='/assignment10',
                          template_folder='templates')
 
@@ -22,7 +21,6 @@ def interact_db(query, query_type: str):
                                          database='ex10_gal_biton')
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)
-
 
     if query_type == 'commit':
         # Use for INSERT, UPDATE, DELETE statements.
@@ -40,17 +38,22 @@ def interact_db(query, query_type: str):
     cursor.close()
     return return_value
 
-@assignment10.route('/showUsers', methods=['GET','POST'])
-@assignment10.route('/assignment10', methods=['GET','POST'])
+
+def get_users():
+    return interact_db(query="select * from ex10_gal_biton.users", query_type='fetch')
+
+
+@assignment10.route('/showUsers', methods=['GET', 'POST'])
+@assignment10.route('/assignment10', methods=['GET', 'POST'])
 def showUsers():
-    users = interact_db(query = "select * "
-                                "from ex10_gal_biton.users", query_type='fetch')
-    if session.get('ans') is  None:
+    users = get_users()
+    if session.get('ans') is None:
         return render_template('assignment10.html', users=users)
     else:
         ans = session['ans']
         session.pop('ans')
         return render_template('assignment10.html', users=users, message=ans)
+
 
 @assignment10.route('/delete', methods=['POST'])
 def delete():
@@ -67,7 +70,8 @@ def delete():
         session['ans'] = "deleted"
     return redirect('/showUsers')
 
-@assignment10.route('/update', methods=['GET','POST'])
+
+@assignment10.route('/update', methods=['GET', 'POST'])
 def update():
     if request.method == 'POST':
         firstName = request.form['fname']
@@ -75,14 +79,14 @@ def update():
         UserName = request.form['UserName']
         email = request.form['email']
         query = " UPDATE ex10_gal_biton.users" \
-                " SET UserName='%s',fname='%s' ,lname='%s' WHERE email='%s';"% (UserName, firstName, lastName, email)
+                " SET UserName='%s',fname='%s' ,lname='%s' WHERE email='%s';" % (UserName, firstName, lastName, email)
         interact_db(query=query, query_type='commit')
         session['ans'] = 'updated'
         return redirect('/showUsers')
     return render_template('assignment10.html', req_method=request.method)
 
 
-@assignment10.route('/insert', methods=['GET','POST'])
+@assignment10.route('/insert', methods=['GET', 'POST'])
 def insert():
     if request.method == 'POST':
         firstName = request.form['fname']
@@ -97,7 +101,26 @@ def insert():
             interact_db(query=query, query_type='commit')
             session['ans'] = 'good job'
         else:
-            session['ans'] ='email is occupied'
+            session['ans'] = 'email is occupied'
         return redirect('/showUsers')
     return render_template('assignment10.html', req_method=request.method)
 
+
+@assignment10.route('/assignment11/users')
+def list_users():
+    return Response(json.dumps(get_users()), mimetype='application/json')
+
+
+@assignment10.route('/req_frontend')
+def req_frontend_func():
+    return render_template('req_frontend.html')
+
+
+@assignment10.route('/req_backend')
+def req_backend_func():
+    user = request.args.get('number')
+    data = None
+    if user:
+        res = requests.get("https://reqres.in/api/users/%s" % user, verify=False)
+        data = res.json()['data']
+    return render_template('req_backend.html', user=data)

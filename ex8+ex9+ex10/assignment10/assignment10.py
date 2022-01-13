@@ -127,8 +127,8 @@ def req_backend_func():
         data = res.json()['data']
     return render_template('req_backend.html', user=data)
   
-  @Assignment10.route('/assignment12/restapi_users', defaults={'user_id': 1})
-@Assignment10.route('/assignment12/restapi_users/<int:user_id>')
+  @assignment10.route('/assignment12/restapi_users', defaults={'user_id': 1})
+@assignment10.route('/assignment12/restapi_users/<int:user_id>')
 def get_user_data(user_id):
     query = f'''
     SELECT * from users WHERE user_id={user_id}
